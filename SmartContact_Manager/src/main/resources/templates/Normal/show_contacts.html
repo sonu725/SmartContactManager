@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{Normal/base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${title}">DashBoard page</title>
+</head>
+<body>
+
+	<section>
+		<div class="card ms-3 me-3">
+			<div class="container mt-3" th:if="${session.message}">
+				<div class="alert text-center"
+					th:classappend="${session.message.type}" role="alert">
+					<span th:text="${session.message.content}"></span>
+					<th:block th:text="${@sessionsHelper.removeMessageFromSession()}"></th:block>
+				</div>
+			</div>
+			<div class="card-body">
+				<h1 class="text-center">Your Contacts</h1>
+				<!--  Search container -->
+
+				<div class="search-container mt-3">
+					<input onkeyup="search()" type="text" class="form-control" id="search-input"
+						placeholder="Search your contact by name" />
+
+					<div class="search-result">
+					</div>
+
+				</div>
+				<div class="table-responsive">
+				<table class="table mt-3">
+					<thead>
+						<tr>
+							<th scope="col">Id</th>
+							<th scope="col">Name</th>
+							<th scope="col">Phone</th>
+							<th scope="col">Email</th>
+							<th scope="col">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="c : ${contacts}">
+							<th scope="row" th:text="${c.cid}">1</th>
+							<!-- <td th:text="${c.cid}"></td> -->
+							<td><img class="my_profile_picture" src=""
+								th:src="@{'/img/'+${c.image}}" alt="profile photo" /> <span
+								th:text="${c.name}"></span></td>
+							<td th:text="${c.phone}"></td>
+							<td><a href="#" th:href="@{'/user/'+${c.cid}+'/contact'}"><span
+									th:text="${c.email}"></span></a></td>
+							<td>
+								<button class="btn btn-danger btn-sm">
+									<a href="#" th:onclick="|deleteContact(${c.cid})|"> <i
+										class="fa-sharp fa-solid fa-trash"></i></a>
+								</button>
+
+								<form method="post"
+									th:action="@{'/user/update-contact/'+${c.cid}}"
+									class="mt-2 btform">
+									<button type="submit" class="btn btn-success btn-sm">
+										<i class="fa-sharp fa-solid fa-pen-to-square"></i>
+									</button>
+								</form>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				</div>
+
+				<!-- Pagination -->
+				<nav aria-label="Page navigation example">
+
+					<ul class="pagination">
+
+						<li th:if="${currentpage!=0}" class="page-item"><a
+							th:href="@{'/user/show-contacts/'+${currentpage-1}}"
+							class="page-link" href="#">Previous</a></li>
+
+						<li th:classappend="${currentpage==i-1?'active':''}"
+							th:each="i: ${#numbers.sequence(1,totalpages)}" class="page-item"><a
+							th:href="@{'/user/show-contacts/'+${i-1}}" class="page-link"
+							href="#"><span th:text="${i}"></span></a></li>
+
+						<li th:if="${currentpage+1 !=totalpages}" class="page-item"><a
+							th:href="@{'/user/show-contacts/'+${currentpage+1}}"
+							class="page-link" href="#">Next</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<script>
+			$(document).ready(() => {
+			  $(".item").removeClass("active");
+			  $("#view-contacts-link").addClass("active");
+			});
+		  </script>
+	</section>
+</body>
+</html>

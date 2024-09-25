@@ -1,0 +1,151 @@
+body {
+	background: #e2e2e2;
+}
+
+.bg-primary {
+	background: #009688 !important;
+}
+
+.banner {
+	width: 100%;
+	height: 93vh;
+	background: linear-gradient(rgba(0, 0, 0, .8), rgba(0, 0, 0, .8)),
+		url(../img/photo.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: white;
+}
+
+.my-card {
+	padding: 50px;
+	background: #FFFFFF;
+}
+
+#login .container #login-row #login-column #login-box {
+	margin-top: 120px;
+	max-width: 600px;
+	height: 420px;
+	border: 1px solid #9C9C9C;
+	background-color: #ffffff;
+}
+
+#login .container #login-row #login-column #login-box #login-form {
+	padding: 20px;
+}
+
+#login .container #login-row #login-column #login-box #login-form #register-link
+	{
+	margin-top: -85px;
+}
+
+/* side bar style */
+
+@media only screen and (max-width : 1150px) {
+	.sidebar {
+		display : none;
+		width : 80% !important;
+		background : white;
+		height : 100vh;
+		position : fixed;
+		padding-top : 20px;
+	}
+	.content {
+		margin-left: 0% !important;
+	}
+}
+
+.sidebar {
+	width: 20%;
+	background: white;
+	height: 100%;
+	position: fixed;
+	padding-top: 18px;
+	z-index : 9999999999;
+}
+
+.sidebar a {
+	display: block;
+	width: 100%;
+	padding: 10px 25px;
+	text-decoration: none;
+	color: grey;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.sidebar a:hover {
+	color: black;
+}
+
+.sidebar .divider {
+	height: 2px;
+	width: 100%;
+	background: #e2e2e2;
+	margin-top: 10px;
+}
+
+.sidebar .cross-btn{
+	position : absolute;
+	top : 0;
+	right : 35px;
+	font-size : 36px;
+	cursor : pointer;
+}
+
+.content {
+	margin-left: 20%;
+}
+
+.content .hamburger{
+	cursor : pointer;
+}
+.my_profile_picture{
+	
+	width:35px;
+	height:35px;
+	object-fit:cover;
+	border-radius:50%;
+}
+div.scrolls{
+	 		margin: 5px;
+            padding: 5px;
+            width: 100%;
+            height: 200px;
+            overflow: auto;
+           text-align: justify;
+}
+.fa-sharp{
+	color: white;
+}
+.btform{
+	display: inline;
+}
+
+.search-container{
+	position: relative;
+
+}
+.search-result{
+	position: absolute;
+	color:black;
+	margin-top:5px;
+	background: white;
+	width: 100%;
+	padding: 10px;
+	border: 1px solid green;
+	opacity: 0.9;
+	display:none;
+	border-radius: 20px;
+}
+#search-input{
+	border: 1px solid green;
+	outline: none;
+}
+.table{
+	border: 2px solid pink;
+}
+.active{
+	background: #009688 !important;
+	color: white !important;
+}

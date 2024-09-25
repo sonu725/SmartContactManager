@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{Normal/base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${title}"></title>
+</head>
+<body>
+
+	<section>
+		<div class="card ms-3 me-3" th:if="${contact}">
+
+			<div class="card-body">
+				<div class="container text-center">
+
+					<img src="#" class="my_profile_picture"
+						th:src="@{'/img/'+${contact.image}}"
+						style="height: 200px; width: 200px;" alt="Contact profile" />
+
+					<h3 class="mt-4"
+						th:text="${contact.name+'('+contact.secondName+')'}"></h3>
+					
+					<div class="table-responsive mt-3">
+					<table class="table">
+						<tbody>
+							<tr>
+								<th scope="row">Cid</th>
+								<td th:text="${contact.cid}">Mark</td>
+							</tr>
+							<tr>
+								<th scope="row">Email Address</th>
+								<td th:text="${contact.email}">Mark</td>
+							</tr>
+							<tr>
+								<th scope="row">Contact Number</th>
+								<td th:text="${contact.phone}">Mark</td>
+							</tr>
+							<tr>
+								<th scope="row">Work Details</th>
+								<td th:text="${contact.work}">Mark</td>
+							</tr>
+					</table>
+					</div>
+					<h2>Description</h2>
+					<center>
+						<div class="container scrolls" th:text="${contact.description}"></div>
+					</center>
+				<!-- 	<hr /> -->
+					<div class="d-grid gap-2">
+						<button class="btn btn-danger" type="submit">Delete</button>
+						<button class="btn btn-success" type="submit">Update</button>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="container" th:unless="${contact}">
+		<h2  class="bg-danger">You have not permission to view this contact.......</h2>
+		</div>
+	</section>
+</body>
+</html>

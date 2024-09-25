@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{Normal/base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${title}">DashBoard page</title>
+</head>
+<body>
+	<section>
+		<div class="container mt-3" th:if="${session.message}">
+			<div class="alert text-center"
+				th:classappend="${session.message.type}" role="alert">
+				<span th:text="${session.message.content}"></span>
+				<th:block th:text="${@sessionsHelper.removeMessageFromSession()}"></th:block>
+			</div>
+		</div>
+		<h3>hello</h3>
+
+		<script>
+        $(document).ready(() => {
+          $(".item").removeClass("active");
+          $("#home-link").addClass("active");
+        });
+      </script>
+	</section>
+</body>
+</html>

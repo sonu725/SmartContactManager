@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{Normal/base::layout(~{::section})}">
+<head>
+<meta charset="UTF-8" />
+<title th:text="${title}"></title>
+</head>
+<body>
+
+	<section>
+		<div class="card ms-3 me-3" th:if="${user}">
+
+			<div class="card-body">
+				<div class="container text-center">
+
+					<img src="#" class="my_profile_picture"
+						th:src="@{'/img/'+${user.imageUrl}}"
+						style="height: 200px; width: 200px;" alt="User profile" />
+
+					<h3 class="mt-4"
+						th:text="${user.name}"></h3>
+					<hr />
+<div class="table-responsive">
+					<table class="table">
+						<tbody>
+							<tr>
+								<th scope="row">User_id</th>
+								<td th:text="${user.id}">Mark</td>
+							</tr>
+							<tr>
+								<th scope="row">User Email Address</th>
+								<td th:text="${user.email}">Mark</td>
+							</tr>
+							<tr>
+								<th scope="row">User Role</th>
+								<td th:text="${user.role}">Mark</td>
+							</tr>
+					</table>
+					</div>
+					<h2>About User</h2>
+					<center>
+						<div class="container scrolls" th:text="${user.about}"></div>
+					</center>
+					<!-- <hr /> -->
+				</div>
+			</div>
+
+		</div>
+		<div class="container" th:unless="${user}">
+		<h2  class="bg-danger">You have not permission to view this contact.......</h2>
+		</div>
+		<script>
+			$(document).ready(() => {
+			  $(".item").removeClass("active");
+			  $("#profile-link").addClass("active");
+			});
+		  </script>
+	</section>
+</body>
+</html>

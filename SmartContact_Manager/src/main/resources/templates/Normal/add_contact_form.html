@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www/thymeleaf.org"
+  th:replace="~{normal/base::layout(~{::section})}"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title th:text="${title}"></title>
+  </head>
+
+  <body>
+    <section>
+      <div class="card ms-3 me-3">
+        <div class="card-body">
+          <div class="container" th:if="${session.message}">
+            <div
+              class="alert text-center"
+              th:classappend="${session.message.type}"
+              role="alert"
+            >
+              <span th:text="${session.message.content}"></span>
+              <th:block
+                th:text="${@sessionsHelper.removeMessageFromSession()}"
+              ></th:block>
+            </div>
+          </div>
+          <h1 class="text-center">Add Contact</h1>
+          <div class="container-fluid mt-1">
+            <div class="row">
+              <div class="col-md-10 offset-md-1">
+                <form
+                  th:object="${contact}"
+                  enctype="multipart/form-data"
+                  method="POST"
+                  action="#"
+                  th:action="@{/user/process-contact}"
+                  class="mt-2"
+                >
+                  <!-- Name  -->
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1"
+                      ><i class="fa fa-plus"></i
+                    ></span>
+                    <input
+                      required
+                      type="text"
+                      name="name"
+                      class="form-control"
+                      placeholder="Username"
+                      aria-label="Username"
+                      aria-describedby="basic-addon1"
+                    />
+                  </div>
+                  <!-- Second name -->
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1"
+                      ><i class="fa fa-user"></i
+                    ></span>
+                    <input
+                      required
+                      type="text"
+                      name="secondName"
+                      class="form-control"
+                      placeholder="Enter Nick Name"
+                      aria-label="SecondName"
+                      aria-describedby="basic-addon1"
+                    />
+                  </div>
+                  <!-- Phone number -->
+
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1"
+                      ><i class="fa fa-phone"></i
+                    ></span>
+                    <input
+                      required
+                      min="10"
+                      max="10"
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter the Phone number"
+                      name="phone"
+                      aria-label="PhoneNumber"
+                      aria-describedby="basic-addon1"
+                    />
+                  </div>
+
+                  <!-- Email -->
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1"
+                      ><i class="fa-regular fa-envelope"></i>
+                    </span>
+                    <input
+                      required
+                      type="email"
+                      class="form-control"
+                      placeholder="Enter the Email"
+                      name="email"
+                      aria-label="Email"
+                      aria-describedby="basic-addon1"
+                    />
+                  </div>
+                  <!-- work-->
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1"
+                      ><i class="fa-solid fa-briefcase"></i>
+                    </span>
+                    <input
+                      required
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter the work related things!"
+                      name="work"
+                      aria-label="work"
+                      aria-describedby="basic-addon1"
+                    />
+                  </div>
+
+                  <!-- Contact-Description-->
+
+                  <div class="input-group mb-3">
+                    <div class="container">
+                      <label for="Passsword" class="form-label"
+                        >Write Brief Description
+                      </label>
+                    </div>
+                    <textarea
+                      name="description"
+                      id="mytextarea"
+                      placeholder="Write Brief Description"
+                      class="form-control"
+                      rows="10"
+                    ></textarea>
+                  </div>
+
+                  <!--file upload  -->
+                  <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupFile01"
+                      >Upload</label
+                    >
+                    <input
+                      name="image"
+                      type="file"
+                      class="form-control"
+                      id="inputGroupFile01"
+                    />
+                  </div>
+                  <button type="submit" class="btn btn-primary">
+                    Save Contact
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        $(document).ready(() => {
+          $(".item").removeClass("active");
+          $("#add-contact-link").addClass("active");
+        });
+      </script>
+    </section>
+  </body>
+</html>
